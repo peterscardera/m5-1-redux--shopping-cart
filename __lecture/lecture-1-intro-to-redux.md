@@ -395,7 +395,7 @@ const FridgeForm = () => {
   return (
     <form
       onSubmit={() => {
-        /* TODO */
+        dispatch(addItemtoFridge(value))
       }}
     >
       <input type='text' onChange={(ev) => setValue(ev.target.value)} />
@@ -418,8 +418,12 @@ const Modal = () => {
 
   React.useEffect(() => {
     const handleKeydown = (ev) => {
-      // TODO: Close modal when 'Escape' is pressed
+      // TODO: Close modal when 'Escape' is pressed the modal disappears
       // (Hint: use ev.key)
+      if(ev.key === 'Escape'){
+
+      dispatch(dismissModal())
+      }
     };
 
     window.addEventListener('keydown', handleKeydown);

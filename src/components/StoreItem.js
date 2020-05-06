@@ -1,12 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import Button from "./Button";
 
-import Button from './Button';
+import { addItem } from "../actions";
 
 const StoreItem = ({ id, title, src, price }) => {
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const dispatch = useDispatch();
+  //dispatch is a function we get from the useDispatch Redux hook. We call this when we want to tell redux that something happened.
+
+
+
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(price / 100);
 
   return (
@@ -15,7 +22,10 @@ const StoreItem = ({ id, title, src, price }) => {
         <Image src={src} alt={`${title} sticker`} />
       </ImageWrapper>
       <Title>{title}</Title>
-      <Button>Add to Cart — {formattedPrice}</Button>
+      {/* <Button>Add to Cart — {formattedPrice}</Button> */}
+      <Button onClick={() => dispatch(addItem({ id, title, price}))}>
+        Add to Cart{" "}{formattedPrice}
+      </Button>
     </Wrapper>
   );
 };

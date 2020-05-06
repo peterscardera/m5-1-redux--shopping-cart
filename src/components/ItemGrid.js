@@ -9,7 +9,9 @@ const ItemGrid = () => {
   return (
     <Wrapper>
       {STORE_ITEMS.map((item) => (
+        
         <StoreItem key={item.id} {...item} />
+       
       ))}
     </Wrapper>
   );
